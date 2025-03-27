@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiciMundo - Tu Tienda de Bicicletas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primario: #2ecc71;
+            --color-secundario: #27ae60;
+            --color-texto: #333;
+            --color-fondo: #f9f9f9;
+            --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--color-texto);
+            background-color: var(--color-fondo);
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: var(--sombra);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .menu li {
+            margin: 0 15px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: var(--color-texto);
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .menu a:hover {
+            background-color: var(--color-primario);
+            color: white;
+        }
+
+        .redes-sociales a {
+            margin: 0 8px;
+            color: var(--color-texto);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .redes-sociales a:hover {
+            color: var(--color-primario);
+        }
+
+        .hamburguesa {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero seccion */
+        #inicio {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 8rem 1rem;
+        }
+
+        #inicio h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        #inicio p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--color-primario);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--color-secundario);
+            transform: translateY(-3px);
+            box-shadow: var(--sombra);
+        }
+
+        /* Seccion de productos */
+        section {
+            padding: 4rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: var(--color-primario);
+        }
+
+        .productos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .producto {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: transform 0.3s;
+        }
+
+        .producto:hover {
+            transform: translateY(-10px);
+        }
+
+        .producto-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .producto-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .producto:hover .producto-img img {
+            transform: scale(1.1);
+        }
+
+        .producto-info {
+            padding: 1.5rem;
+        }
+
+        .producto-info h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .producto-info .precio {
+            font-weight: 700;
+            color: var(--color-primario);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Formulario de Contacto */
+        #contacto {
+            background-color: white;
+        }
+
+        #formulario-contacto {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        #formulario-contacto input,
+        #formulario-contacto textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: border 0.3s;
+        }
+
+        #formulario-contacto input:focus,
+        #formulario-contacto textarea:focus {
+            border-color: var(--color-primario);
+            outline: none;
+        }
+
+        #formulario-contacto textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 3rem 5%;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-info h3 {
+            margin-bottom: 1rem;
+            color: var(--color-primario);
+        }
+
+        .footer-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-redes a {
+            color: white;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .footer-redes a:hover {
+            color: var(--color-primario);
+        }
+
+        .derechos {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #444;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                background: white;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                box-shadow: var(--sombra);
+                transition: left 0.3s;
+            }
+
+            .menu.active {
+                left: 0;
+            }
+
+            .menu li {
+                margin: 10px 0;
+            }
+
+            .hamburguesa {
+                display: block;
+            }
+
+            #inicio {
+                padding: 6rem 1rem;
+            }
+
+            #inicio h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            nav {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            #inicio h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#inicio">
+                    <img src="" alt="Logo BiciMundo"><!--poner el logo de la empresa-->
+                </a>
+            </div>
+
+            <ul class="menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#mas-usados">Más Usados</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+
+            <div class="redes-sociales">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+
+            <div class="hamburguesa">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <h1>Bienvenidos a BiciMundo</h1>
+            <p>Tu destino definitivo para bicicletas de calidad y accesorios premium</p>
+            <a href="#productos" class="btn">Ver Productos</a>
+        </section>
+
+        <section id="productos">
+            <h2>Nuestros Productos</h2>
+            <div class="productos-container" id="catalogo-productos">
+                
+                <!-- Productos se cargan con JavaScript -->
+            </div>
+        </section>
+
+        <section id="mas-usados">
+            <h2>Productos Destacados</h2>
+            <div class="productos-container" id="productos-destacados">
+                
+                <!-- Productos destacados se cargan con JavaScript -->
+            </div>
+        </section>
+
+        <section id="contacto">
+            <h2>Contáctanos</h2>
+            <form id="formulario-contacto">
+                <div class="input-group">
+                    <input type="text" name="nombre" placeholder="Nombre Completo" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Correo Electrónico" required>
+                </div>
+                <div class="input-group">
+                    <input type="tel" name="telefono" placeholder="Teléfono (Opcional)">
+                </div>
+                <div class="input-group">
+                    <textarea name="mensaje" placeholder="Tu Mensaje" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>BiciMundo</h3>
+                <p>Tu tienda de confianza para bicicletas y accesorios de calidad.</p>
+            </div>
+
+            <div class="footer-info">
+                <h3>Contacto</h3>
+                <p><i class="fas fa-phone"></i> (809) 108-2000</p>
+                <p><i class="fas fa-envelope"></i> contacto@bicimundo.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Av. , Santo Domingo, RD</p>
+            </div>
+
+            <div class="footer-info">
+                <h3>Horario</h3>
+                <p>Lunes a Viernes: 9:00 AM - 8:00 PM</p>
+                <p>Sábados: 9:00 AM - 10:00 PM</p>
+                <p>Domingos: 9:00 AM - 10:00 PM</p>
+                <div class="footer-redes">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="derechos">
+            <p>&copy; 2025 BiciMundo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Hamburguesa
+        const hamburguesa = document.querySelector('.hamburguesa');
+        const menu = document.querySelector('.menu');
+
+        hamburguesa.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            hamburguesa.innerHTML = menu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Cerrar menu al hacer click en un enlace
+        document.querySelectorAll('.menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                hamburguesa.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Datos de productos
+        const productos = [
+            {
+                id: 1,
+                nombre: "Montaña Aventura Pro",
+                descripcion: "Bicicleta de montaña con cuadro de aluminio y suspensión delantera.",
+                precio: 300,
+                imagen: "https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-4.0.3",
+                destacado: true
+            },
+            {
+                id: 2,
+                nombre: "Urbana Clásica",
+                descripcion: "Bicicleta urbana con diseño retro y comodidad para la ciudad.",
+                precio: 500,
+                imagen: "https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?ixlib=rb-4.0.3",
+                destacado: true
+            },
+            {
+                id: 3,
+                nombre: "Junior Explorer",
+                descripcion: "Bicicleta infantil con ruedas estabilizadoras extraíbles.",
+                precio: 400,
+                imagen: "https://images.unsplash.com/photo-1593764592116-bfb2a97c642a?ixlib=rb-4.0.3",
+                destacado: true
+            },
+            {
+                id: 4,
+                nombre: "Carretera Veloz",
+                descripcion: "Bicicleta de carretera profesional con cuadro de fibra de carbono.",
+                precio: 1300,
+                imagen: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-4.0.3",
+                destacado: false
+            },
+            {
+                id: 5,
+                nombre: "Híbrida Comfort",
+                descripcion: "Bicicleta híbrida perfecta para paseos urbanos y caminos rurales.",
+                precio: 1500,
+                imagen: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?ixlib=rb-4.0.3",
+                destacado: false
+            },
+            {
+                id: 6,
+                nombre: "Eléctrica CityGo",
+                descripcion: "Bicicleta eléctrica con autonomía de 60km y motor de 250W.",
+                precio: 3000,
+                imagen: "https://images.unsplash.com/photo-1558981852-426c6c22a060?ixlib=rb-4.0.3",
+                destacado: true
+            }
+        ];
+
+        // Mostrar productos
+        function mostrarProductos() {
+            const catalogo = document.getElementById('catalogo-productos');
+            const destacados = document.getElementById('productos-destacados');
+
+            catalogo.innerHTML = '';
+            destacados.innerHTML = '';
+
+            productos.forEach(producto => {
+                const productoHTML = `
+                    <div class="producto">
+                        <div class="producto-img">
+                            <img src="${producto.imagen}" alt="${producto.nombre}">
+                        </div>
+                        <div class="producto-info">
+                            <h3>${producto.nombre}</h3>
+                            <p>${producto.descripcion}</p>
+                            <p class="precio">$${producto.precio.toFixed(2)}</p>
+                            <button class="btn" onclick="mostrarDetalle(${producto.id})">Ver Detalles</button>
+                        </div>
+                    </div>
+                `;
+
+                catalogo.innerHTML += productoHTML;
+                
+                if(producto.destacado) {
+                    destacados.innerHTML += productoHTML;
+                }
+            });
+        }
+
+        // Mostrar detalle del producto (simulado)
+        function mostrarDetalle(id) {
+            const producto = productos.find(p => p.id === id);
+            alert(`Detalles de ${producto.nombre}\n\nPrecio: $${producto.precio.toFixed(2)}\n\n${producto.descripcion}`);
+        }
+
+        // Formulario de contacto
+        const formulario = document.getElementById('formulario-contacto');
+        
+        formulario.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nombre = this.nombre.value;
+            const email = this.email.value;
+            
+            // Simular envios
+            alert(`Gracias ${nombre}, hemos recibido tu mensaje. Te contactaremos a ${email} pronto.`);
+            this.reset();
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            mostrarProductos();
+            
+            // Smooth scrolling para enlaces
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
